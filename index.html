@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shahid: two website concepts</title>
+  <meta name="description" content="Two website concepts for Shahid Cooking Pastes. Open each one and pick a direction.">
+  <meta name="theme-color" content="#FCEFC6">
+  <link rel="icon" href="site-a-masak-apa/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,900&family=Bagel+Fat+One&family=Figtree:wght@500;700;800&family=Sriracha&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --kunyit-pale: #FCEFC6; --kunyit: #F4B223; --rendang: #33180D;
+      --cili-bg: #D42017; --santan: #FFF4E2; --ink: #3B0D0C;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { font: 500 16px/1.5 "Figtree", system-ui, sans-serif; background: var(--kunyit-pale); color: var(--rendang); }
+    img { display: block; max-width: 100%; }
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+    .top {
+      position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 5;
+      display: flex; align-items: center; gap: 14px; padding: 8px 18px 8px 10px;
+      background: #FFF9EC; border: 2px solid var(--ink); border-radius: 999px; box-shadow: 0 4px 0 var(--ink);
+      white-space: nowrap;
+    }
+    .top img { width: 88px; }
+    .top p { margin: 0; font-weight: 800; font-size: .95rem; }
+
+    .split { display: flex; min-height: 100vh; min-height: 100svh; }
+    .concept {
+      position: relative; flex: 1; overflow: hidden; text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 110px clamp(20px, 4vw, 56px) clamp(28px, 5vw, 56px);
+      transition: flex-grow .8s var(--ease);
+    }
+    .concept:hover, .concept:focus-visible { flex-grow: 1.45; }
+    .concept--a { background: var(--kunyit-pale); color: var(--rendang); }
+    .concept--b { background: var(--cili-bg); color: var(--santan); }
+    .concept__art { position: absolute; inset: 88px 0 auto; height: 46%; display: grid; place-items: center; pointer-events: none; }
+    .concept__label { font-weight: 800; font-size: .95rem; margin: 0 0 12px; }
+    .concept h2 { margin: 0; line-height: .92; }
+    .concept--a h2 { font: 400 clamp(2.6rem, 5.6vw, 5.2rem)/.95 "Bagel Fat One", system-ui, sans-serif; }
+    .concept--b h2 { font: 900 clamp(2.8rem, 6vw, 5.8rem)/.86 "Anybody", Impact, sans-serif; font-variation-settings: "wdth" 72; text-transform: uppercase; transition: font-variation-settings .8s var(--ease); }
+    .concept--b:hover h2, .concept--b:focus-visible h2 { font-variation-settings: "wdth" 110; }
+    .concept__desc { max-width: 40ch; margin: 16px 0 0; font-size: 1.05rem; font-weight: 600; }
+    .concept--a .concept__desc { color: rgba(51, 24, 13, .8); }
+    .concept__go {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; width: fit-content;
+      padding: 14px 24px; border-radius: 999px; font-weight: 800;
+      border: 2.5px solid var(--ink); box-shadow: 0 5px 0 var(--ink);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    }
+    .concept--a .concept__go { background: var(--rendang); color: var(--kunyit-pale); }
+    .concept--b .concept__go { background: var(--santan); color: var(--ink); }
+    .concept:hover .concept__go { transform: translateY(-3px); box-shadow: 0 8px 0 var(--ink); }
+    .concept__hand { font-family: "Sriracha", cursive; font-size: 1.15rem; }
+
+    /* concept A preview: a fan of packs */
+    .fan { position: relative; width: min(70%, 420px); aspect-ratio: 1.3; }
+    .fan img { position: absolute; bottom: 0; width: 44%; border-radius: 6px; box-shadow: 0 18px 26px rgba(51, 24, 13, .28); transition: transform .8s var(--ease); }
+    .fan img:nth-child(1) { left: 2%; transform: rotate(-14deg); }
+    .fan img:nth-child(2) { left: 28%; z-index: 2; transform: rotate(0deg) translateY(-8%); }
+    .fan img:nth-child(3) { right: 2%; transform: rotate(13deg); }
+    .concept--a:hover .fan img:nth-child(1) { transform: rotate(-22deg) translateX(-8%); }
+    .concept--a:hover .fan img:nth-child(3) { transform: rotate(21deg) translateX(8%); }
+    .concept--a:hover .fan img:nth-child(2) { transform: translateY(-14%) scale(1.04); }
+
+    /* concept B preview: the spinning pan with a pack in front */
+    .pan { position: relative; width: min(50%, 330px); aspect-ratio: 1; }
+    .pan__photo { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 9px var(--santan), 0 0 0 11px var(--ink), 0 26px 40px rgba(59, 13, 12, .4); animation: spin 60s linear infinite; }
+    .pan__photo img { width: 100%; height: 100%; object-fit: cover; }
+    .pan__pack { position: absolute; width: 38%; left: -12%; bottom: 2%; transform: rotate(-10deg); border-radius: 6px; box-shadow: 0 20px 26px rgba(59, 13, 12, .45); transition: transform .8s var(--ease); }
+    .concept--b:hover .pan__pack { transform: rotate(-2deg) translateY(-8%); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 800px) {
+      .split { flex-direction: column; }
+      .concept { min-height: 88vh; min-height: 88svh; }
+      .concept:hover, .concept:focus-visible { flex-grow: 1; }
+      .top p { display: none; }
+      .top { padding: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pan__photo { animation: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <img src="site-a-masak-apa/assets/img/logo-shahid.svg" alt="Shahid" width="88" height="35">
+    <p>Website concepts for Shahid Cooking Pastes</p>
+  </header>
+
+  <main class="split">
+    <a class="concept concept--a" href="site-a-masak-apa/index.html">
+      <div class="concept__art" aria-hidden="true">
+        <div class="fan">
+          <img src="site-a-masak-apa/assets/img/photos/pouch-rendang.jpg" alt="">
+          <img src="site-a-masak-apa/assets/img/pack-asam-pedas.jpg" alt="">
+          <img src="site-a-masak-apa/assets/img/photos/pouch-tomyam.jpg" alt="">
+        </div>
+      </div>
+      <p class="concept__label">Concept A</p>
+      <h2>Masak apa hari ni?</h2>
+      <p class="concept__desc">Warm, playful and hand-drawn. Doodles, a spin-the-plate dinner decider, and a cooking timer that runs as you scroll.</p>
+      <span class="concept__go">Open concept A</span>
+    </a>
+
+    <a class="concept concept--b" href="site-b-mudah-pantas-sedap/index.html">
+      <div class="concept__art" aria-hidden="true">
+        <div class="pan">
+          <div class="pan__photo"><img src="site-b-mudah-pantas-sedap/assets/img/photos/hero-pan.jpg" alt=""></div>
+          <img class="pan__pack" src="site-b-mudah-pantas-sedap/assets/img/pack-asam-pedas.jpg" alt="">
+        </div>
+      </div>
+      <p class="concept__label">Concept B</p>
+      <h2>Mudah. Pantas. Sedap.</h2>
+      <p class="concept__desc">Bold, loud and poster-like. A full-screen lineup that changes colour with every pack, plus a WhatsApp order builder.</p>
+      <span class="concept__go">Open concept B</span>
+    </a>
+  </main>
+</body>
+</html>

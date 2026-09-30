@@ -1,0 +1,6 @@
+# Source material not needed by the sites (third-party template screenshots, raw client photos)
+reference Images/
+UI Images/
+# Tool leftovers
+.playwright-mcp/
+node_modules/
